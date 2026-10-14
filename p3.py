@@ -18,15 +18,12 @@ bagging_model.fit(x_train, y_train)
 y_pred_bagging = bagging_model.predict(x_test)
 
 acc = accuracy_score(y_test, y_pred_bagging)
-print("Accuracy of Bagging Classifier:", acc)
-
 cm = confusion_matrix(y_test, y_pred_bagging)
-print("Confusion Matrix of Bagging Classifier:")
-print(cm)
-
 cr = classification_report(y_test, y_pred_bagging, target_names=iris_data.target_names)
-print("Classification Report of Bagging Classifier:")
-print(cr)
+
+print("Accuracy of Bagging Classifier:", acc)
+print("Confusion Matrix of Bagging Classifier:", cm)
+print("Classification Report of Bagging Classifier:", cr)
 
 boost_model = AdaBoostClassifier(estimator=base_dt, n_estimators=50, learning_rate=0.5, random_state=42)
 boost_model.fit(x_train, y_train)
@@ -35,7 +32,6 @@ y_pred_boost = boost_model.predict(x_test)
 acc = accuracy_score(y_test, y_pred_boost)
 cm = confusion_matrix(y_test, y_pred_boost)
 cr = classification_report(y_test, y_pred_boost, target_names=iris_data.target_names)
-
 
 print("Confusion Matrix of AdaBoost Classifier:",cm)
 print("Accuracy of AdaBoost Classifier:", acc)
