@@ -13,7 +13,6 @@ def consistent(h, x):
 def general(h1, h2):
     return all(a == "?" or a == b for a, b in zip(h1, h2))
 
-# Find-S
 def find_s(df):
     h = None
     for _, row in df.iterrows():
@@ -25,7 +24,6 @@ def find_s(df):
                 h = [a if a == b else "?" for a, b in zip(h, x)]
     return h
 
-# Candidate Elimination
 def candidate_elimination(df):
     n = df.shape[1] - 1
     domains = [df.iloc[:, i].astype(str).str.strip().unique()
@@ -63,7 +61,6 @@ def candidate_elimination(df):
 
     return S, G
 
-# Read dataset
 df = pd.read_csv("C:/Users/gagan/Downloads/Dataset_1.csv", dtype=str)
 
 print("Dataset:\n", df.head())
