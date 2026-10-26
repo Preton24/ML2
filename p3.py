@@ -1,6 +1,6 @@
 import numpy as np
-from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
 from sklearn.ensemble import BaggingClassifier, AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
@@ -11,9 +11,9 @@ y = iris_data.target
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42, stratify=y)
 
-base_dt = DecisionTreeClassifier(max_depth=3, random_state=42)
+dt = DecisionTreeClassifier(max_depth=3, random_state=42)
 
-bagging_model = BaggingClassifier(estimator=base_dt, n_estimators=50, random_state=42, bootstrap=True)
+bagging_model = BaggingClassifier(estimator=dt, n_estimators=50, random_state=42, bootstrap=True)
 bagging_model.fit(x_train, y_train)
 y_pred_bagging = bagging_model.predict(x_test)
 
@@ -25,7 +25,7 @@ print("Accuracy of Bagging Classifier:", acc)
 print("Confusion Matrix of Bagging Classifier:", cm)
 print("Classification Report of Bagging Classifier:", cr)
 
-boost_model = AdaBoostClassifier(estimator=base_dt, n_estimators=50, learning_rate=0.5, random_state=42)
+boost_model = AdaBoostClassifier(estimator=dt, n_estimators=50, learning_rate=0.5, random_state=42)
 boost_model.fit(x_train, y_train)
 y_pred_boost = boost_model.predict(x_test)
 
